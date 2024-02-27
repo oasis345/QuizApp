@@ -23,7 +23,7 @@ export default function RootLayout({
             <header></header>
 
             <main>
-              <section className="w-full mx-auto">{children}</section>
+              <section className="container w-full mx-auto py-5 px-5">{children}</section>
             </main>
 
             <footer></footer>

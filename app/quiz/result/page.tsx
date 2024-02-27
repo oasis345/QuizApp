@@ -30,18 +30,19 @@ export default function Page() {
 
   return (
     isMounted && (
-      <div className="container flex flex-col">
+      <div className="flex flex-col w-full">
         <span>{`소요 시간: ${durationMinutes}분 ${durationSeconds}초`}</span>
         <span>{`정답 개수: ${correctQuizzes.length}`}</span>
         <span>{`오답 개수: ${incorrectQuizzes.length}`}</span>
         <BarChart data={chartData} title="차트" keyField="key" valueField="value" />
-        <Button
-          onClick={() => {
-            router.push('/quiz/notes');
-          }}
-        >
-          오답 노트 보기
-        </Button>
+        <div className="flex">
+          <Button className="w-full" onClick={() => router.push('/quiz/notes')}>
+            오답 노트 보기
+          </Button>
+          <Button className="w-full" onClick={() => router.push('/')}>
+            새로 시작
+          </Button>
+        </div>
       </div>
     )
   );

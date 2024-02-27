@@ -15,9 +15,9 @@ export default function Home() {
   const [difficulty, setDifficulty] = React.useState<Quiz['difficulty'] | null>(null);
   const [quizType, setQuizType] = React.useState<Quiz['type'] | null>(null);
   const [amount, setAmount] = React.useState(5);
+  const router = useRouter();
   const setQuizzes = useSetRecoilState(quizState);
   const setTimeRange = useSetRecoilState(timeRangeState);
-  const router = useRouter();
 
   const onBtnClicked = async () => {
     const url = `https://opentdb.com/api.php`;
@@ -46,8 +46,8 @@ export default function Home() {
   };
 
   return (
-    <div className="container flex flex-col h-screen items-center border-2 rounded">
-      카테고리, 난이도 문제 개수,등을 선택하여 퀴즈를 시작하세요
+    <div className="flex flex-col items-center space-y-5">
+      <p className="font-bold">카테고리, 난이도 문제 개수,등을 선택하여 퀴즈를 시작하세요</p>
       <div className="flex-col w-full space-y-5">
         <Select
           items={CATEGORY_MAP}

@@ -52,9 +52,12 @@ export default function Page({ params: { id } }: { params: { id: string } }) {
 
   return (
     currentQuiz && (
-      <div className="container flex flex-col">
+      <div className="flex flex-col space-y-3">
         {`문제 [${quizIndex + 1} / ${quizzes.length}]`}
-        <div dangerouslySetInnerHTML={{ __html: currentQuiz.question }} />
+        <div className="flex space-x-1 font-bold">
+          <p>Quiz:</p>
+          <p dangerouslySetInnerHTML={{ __html: currentQuiz.question }} />
+        </div>
         <RadioGroup
           items={currentQuiz.allAnswers}
           value={currentQuiz.userAnswer}
@@ -63,7 +66,10 @@ export default function Page({ params: { id } }: { params: { id: string } }) {
         />
         {currentQuiz.userAnswer && (
           <div className="flex flex-col">
-            <span>{`정답: ${currentQuiz.correct_answer}`}</span>
+            <div className="flex space-x-1 font-bold">
+              <p>Answer:</p>
+              <p dangerouslySetInnerHTML={{ __html: currentQuiz.correct_answer }} />
+            </div>
             <Button onClick={onBtnClicked}>{isLastIndex ? `결과 보기` : `다음 문제`}</Button>
           </div>
         )}
