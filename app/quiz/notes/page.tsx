@@ -3,7 +3,6 @@ import React, { useEffect } from 'react';
 import { RadioGroup } from '@/app/components';
 import { quizService } from '@/app/services/quizService';
 import { Quiz } from '@/app/interfaces';
-import _ from 'lodash';
 
 export default function Page() {
   const [incorrectQuizzes, setIncorrectQuizzes] = React.useState<Quiz[]>([]);

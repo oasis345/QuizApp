@@ -102,14 +102,14 @@ export const CATEGORY_MAP = [
 ];
 
 export const DIFFICULTY_MAP = [
-  { key: null, label: '랜덤' },
-  { key: 'easy', label: '쉬움' },
-  { key: 'medium', label: '보통' },
-  { key: 'hard', label: '어려움' },
+  { key: null, label: 'Any Difficulty' },
+  { key: 'easy', label: 'Easy' },
+  { key: 'medium', label: 'Medium' },
+  { key: 'hard', label: 'Hard' },
 ];
 
 export const QUIZ_TYPE_MAP = [
-  { key: null, label: '랜덤' },
-  { key: 'multiple', label: '멀티플' },
-  { key: 'boolean', label: 'OX퀴즈' },
+  { key: null, label: 'Any Type' },
+  { key: 'multiple', label: 'Multiple' },
+  { key: 'boolean', label: 'Boolean' },
 ];

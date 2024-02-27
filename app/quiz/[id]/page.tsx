@@ -3,8 +3,8 @@
 import { useEffect, useState } from 'react';
 import { Quiz } from '../../interfaces';
 import { useRouter } from 'next/navigation';
-import { Button, RadioGroup } from '@/app/components';
-import { quizService } from '@/app/services/quizService';
+import { Button, RadioGroup } from '../../components';
+import { quizService } from '../../services/quizService';
 import React from 'react';
 
 export default function Page({ params: { id } }: { params: { id: string } }) {
@@ -12,7 +12,7 @@ export default function Page({ params: { id } }: { params: { id: string } }) {
   const [currentQuiz, setCurrentQuiz] = useState<Quiz>();
   const router = useRouter();
   const quizIndex = Number(id);
-  const isLastIndex = quizIndex >= quizzes.length - 1;
+  const isLastIndex = quizIndex >= quizzes?.length - 1;
 
   useEffect(() => {
     setCurrentQuiz(quizzes[quizIndex]);

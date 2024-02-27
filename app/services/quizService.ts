@@ -100,6 +100,12 @@ class QuizService {
   endQuiz() {
     this.endTime = dayjs().unix();
   }
+
+  reset() {
+    this.questions = [];
+    this.startTime = 0;
+    this.endTime = 0;
+  }
 }
 
 export const quizService = new QuizService();

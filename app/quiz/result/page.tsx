@@ -31,7 +31,13 @@ export default function Page() {
           <Button className="w-full" onClick={() => router.push('/quiz/notes')}>
             오답 노트 보기
           </Button>
-          <Button className="w-full" onClick={() => router.push('/')}>
+          <Button
+            className="w-full"
+            onClick={() => {
+              quizService.reset();
+              router.push('/');
+            }}
+          >
             새로 시작
           </Button>
         </div>

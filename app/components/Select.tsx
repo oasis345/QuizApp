@@ -18,10 +18,7 @@ export default function Select({
   onSelect?: (value: any) => void;
 }) {
   const [value, setValue] = React.useState(defaultValue);
-  const selectedItem = React.useMemo(
-    () => items.find((item) => item[keyField] ?? item[labelField] === value),
-    [items, keyField, labelField, value],
-  );
+  const selectedItem = React.useMemo(() => items.find((item) => item[keyField] === value), [value, items, keyField]);
 
   return (
     <RadixSelect.Root
