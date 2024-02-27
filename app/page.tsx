@@ -14,7 +14,9 @@ export default function Home() {
   const router = useRouter();
 
   const onBtnClicked = async () => {
+    if (quizService.questions.length > 0) quizService.reset();
     await quizService.loadQuestion({ amount, category, difficulty, type: quizType });
+
     quizService.startQuiz();
     router.push('quiz/0');
   };
