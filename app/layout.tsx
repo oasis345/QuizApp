@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
-import RecoilRootWrapper from './RecoilRootWrapper';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -18,17 +17,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <RecoilRootWrapper>
-          <div className="flex flex-col h-screen">
-            <header></header>
+        <div className="flex flex-col h-screen">
+          <header></header>
 
-            <main>
-              <section className="container w-full mx-auto py-5 px-5">{children}</section>
-            </main>
+          <main>
+            <section className="container w-full mx-auto py-5 px-5">{children}</section>
+          </main>
 
-            <footer></footer>
-          </div>
-        </RecoilRootWrapper>
+          <footer></footer>
+        </div>
       </body>
     </html>
   );

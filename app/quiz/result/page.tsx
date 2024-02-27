@@ -1,24 +1,16 @@
 'use client';
 
-import { correctQuizzesState, incorrectQuizzesState } from '@/app/store/quizState';
-import { timeRangeState } from '@/app/store/timeRangeState';
-import { useRecoilValue } from 'recoil';
-import { dayjs } from '@/app/utils';
 import { useEffect } from 'react';
 import { BarChart, Button } from '@/app/components';
-import React from 'react';
 import { useRouter } from 'next/navigation';
+import { quizService } from '@/app/services/quizService';
+import React from 'react';
 
 export default function Page() {
   const [isMounted, setIsMounted] = React.useState(false);
   const [chartData, setChartData] = React.useState<any[]>([]);
-  const correctQuizzes = useRecoilValue(correctQuizzesState);
-  const incorrectQuizzes = useRecoilValue(incorrectQuizzesState);
-  const timeRange = useRecoilValue(timeRangeState);
-  const duration = dayjs(timeRange.endTime).diff(timeRange.startTime);
+  const { correctQuizzes, incorrectQuizzes, durationTime } = quizService;
   const router = useRouter();
-  const durationMinutes = Math.floor(duration / 60);
-  const durationSeconds = duration % 60;
 
   useEffect(() => {
     setIsMounted(true);
@@ -31,7 +23,7 @@ export default function Page() {
   return (
     isMounted && (
       <div className="flex flex-col w-full">
-        <span>{`소요 시간: ${durationMinutes}분 ${durationSeconds}초`}</span>
+        <span>{`소요 시간: ${durationTime.minutes}분 ${durationTime.seconds}초`}</span>
         <span>{`정답 개수: ${correctQuizzes.length}`}</span>
         <span>{`오답 개수: ${incorrectQuizzes.length}`}</span>
         <BarChart data={chartData} title="차트" keyField="key" valueField="value" />

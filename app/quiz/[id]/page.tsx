@@ -1,18 +1,14 @@
 'use client';
 
-import { useRecoilState } from 'recoil';
-import { quizState } from '../../store/quizState';
 import { useEffect, useState } from 'react';
 import { Quiz } from '../../interfaces';
 import { useRouter } from 'next/navigation';
 import { Button, RadioGroup } from '@/app/components';
-import _ from 'lodash';
-import { timeRangeState } from '@/app/store/timeRangeState';
-import { dayjs } from '@/app/utils';
+import { quizService } from '@/app/services/quizService';
+import React from 'react';
 
 export default function Page({ params: { id } }: { params: { id: string } }) {
-  const [quizzes, setQuizzes] = useRecoilState(quizState);
-  const [timeRange, setTimeRange] = useRecoilState(timeRangeState);
+  const [quizzes, setQuizzes] = useState(quizService.questions);
   const [currentQuiz, setCurrentQuiz] = useState<Quiz>();
   const router = useRouter();
   const quizIndex = Number(id);
@@ -23,28 +19,15 @@ export default function Page({ params: { id } }: { params: { id: string } }) {
   }, [quizIndex, quizzes]);
 
   const onValueChanged = (value: string) => {
-    const updatedQuizList = _.cloneDeep(quizzes);
-    const updatedQuiz = _.cloneDeep(currentQuiz);
-
-    updatedQuizList[quizIndex].userAnswer = value;
-    updatedQuiz!.userAnswer = value;
-
-    setCurrentQuiz(updatedQuiz);
-    setQuizzes(updatedQuizList);
+    quizService.submitAnswer(quizIndex, value);
+    setQuizzes(quizService.questions);
   };
 
   const onBtnClicked = () => {
     let url = `/quiz/${quizIndex + 1}`;
     if (isLastIndex) {
       url = `/quiz/result`;
-
-      if (!timeRange.endTime) {
-        const endTime = dayjs().unix();
-        setTimeRange((timeRange) => ({
-          startTime: timeRange.startTime,
-          endTime: endTime,
-        }));
-      }
+      if (!quizService.endTime) quizService.endQuiz();
     }
 
     router.push(url);

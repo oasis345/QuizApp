@@ -1,20 +1,19 @@
 'use client';
-import { useRecoilValue } from 'recoil';
-import { incorrectQuizzesState } from '../../store/quizState';
-import { Button, RadioGroup } from '@/app/components';
 import React, { useEffect } from 'react';
+import { RadioGroup } from '@/app/components';
+import { quizService } from '@/app/services/quizService';
+import { Quiz } from '@/app/interfaces';
 import _ from 'lodash';
 
 export default function Page() {
-  const incorrectQuizzes = useRecoilValue(incorrectQuizzesState);
-  const [isMounted, setIsMounted] = React.useState(false);
+  const [incorrectQuizzes, setIncorrectQuizzes] = React.useState<Quiz[]>([]);
 
   useEffect(() => {
-    setIsMounted(true);
+    setIncorrectQuizzes(quizService.incorrectQuizzes);
   }, []);
 
   return (
-    isMounted && (
+    incorrectQuizzes && (
       <div className="flex flex-col space-y-5">
         {incorrectQuizzes.map((quiz) => (
           <div key={quiz.question} className="space-y-3">
