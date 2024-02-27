@@ -1,36 +1,11 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## quizService, quizComponent
 
-## Getting Started
+퀴즈 서비스와 컴포넌트를 주요 비지니스 로직 및 단위 테스트 대상으로 선택한 이유는 다음과 같습니다.
 
-First, run the development server:
+먼저 퀴즈 서비스는 핵심 비즈니스 로직을 포함하고 있기 때문입니다.
+퀴즈 데이터를 가져오고, 사용자 답변을 처리하며, 퀴즈의 시작 및 종료 시간을 추적하는 등의 기능을 포함하고 있습니다.
+이러한 핵심 로직이 올바로 동작하는지 테스트해야 한다 생각합니다.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+다음으로 퀴즈 컴포넌트는 퀴즈 앱의 핵심적인 기능 중 하나인 퀴즈 풀기 화면을 담당하고 있습니다. 
+사용자가 퀴즈를 푸는 동안 보여지는 화면으로, 문제를 표시하고 사용자의 답변을 받아 처리하며, 
+다음 문제로 이동하거나 결과를 확인할 수 있는 기능을 제공합니다. 따라서 이 컴포넌트를 단위 테스트 대상으로 선택하는 것이 좋다고 생각했습니다.
